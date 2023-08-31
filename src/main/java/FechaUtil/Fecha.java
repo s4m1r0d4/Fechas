@@ -98,8 +98,8 @@ public class Fecha
         if (!(year >= 1 && year <= 2077))
             throw new Exception("Year must be in between 1950 and 2077");
 
-        year -= 1950;
         checkMonthDay(year, getMonth(), getDay());
+        year -= 1950;
         this.data = (short) ((this.data & 0x1FF) | (year << 9));
     }
 

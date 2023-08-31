@@ -65,7 +65,7 @@ public class Fecha
             && !(isLeap && month == 2 && day == 29)) {
             String text = String.format(
                 "[ERROR] month %d of year %d has %d days, tried using %d",
-                month, getYear(), monthDays[month - 1], day
+                month, year, monthDays[month - 1], day
             );
             throw new Exception(text);
         }
@@ -99,8 +99,8 @@ public class Fecha
             throw new Exception("Year must be in between 1950 and 2077");
 
         year -= 1950;
-        this.data = (short) ((this.data & 0x1FF) | (year << 9));
         checkMonthDay(year, getMonth(), getDay());
+        this.data = (short) ((this.data & 0x1FF) | (year << 9));
     }
 
     public void setMonth(int month) throws Exception
@@ -108,8 +108,8 @@ public class Fecha
         if (!(month >= 1 && month <= 12))
             throw new Exception("Month must be in between 1 and 12");
 
-        this.data = (short) ((this.data & 0xFE1F) | (month << 5));
         checkMonthDay(getYear(), month, getDay());
+        this.data = (short) ((this.data & 0xFE1F) | (month << 5));
     }
 
     public void setDay(int day) throws Exception
@@ -117,8 +117,8 @@ public class Fecha
         if (!(day >= 1 && day <= 31))
             throw new Exception("Day must be in between 1 and 31");
 
-        this.data = (short) ((this.data & 0xFFE0) | (day));
         checkMonthDay(getYear(), getMonth(), day);
+        this.data = (short) ((this.data & 0xFFE0) | (day));
     }
     
     @Override

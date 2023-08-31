@@ -73,6 +73,15 @@ public class Fechas
         } catch (Exception e) {
             System.out.println(e);
         }
+        
+        try {
+            var hoy = new Fecha(2023, 2, 29);
+            System.out.println(hoy);
+            System.out.println(Integer.toBinaryString(hoy.getData()));
+            System.out.println("---------------");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
     }
 }

@@ -19,9 +19,10 @@ public class Fechas
             var f = new Fecha();
             System.out.println(f);
             System.out.println(Integer.toBinaryString(f.getData()));
-            System.out.println("---------------");
         } catch (Exception e) {
             System.out.println(e);
+        } finally {
+            System.out.println("---------------");
         }
 
         try {
@@ -29,9 +30,10 @@ public class Fechas
             f.setYear(2020);
             System.out.println(f);
             System.out.println(Integer.toBinaryString((int )f.getData()));
-            System.out.println("---------------");
         } catch (Exception e) {
             System.out.println(e);
+        } finally {
+            System.out.println("---------------");
         }
         
         try {
@@ -40,9 +42,10 @@ public class Fechas
             f.setMonth(2);
             System.out.println(f);
             System.out.println(Integer.toBinaryString(f.getData()));
-            System.out.println("---------------");
         } catch (Exception e) {
             System.out.println(e);
+        } finally {
+            System.out.println("---------------");
         }
         
         try {
@@ -50,9 +53,10 @@ public class Fechas
             f.setDay(29);
             System.out.println(f);
             System.out.println(Integer.toBinaryString(f.getData()));
-            System.out.println("---------------");
         } catch (Exception e) {
             System.out.println(e);
+        } finally {
+            System.out.println("---------------");
         }
         
         try {
@@ -60,27 +64,52 @@ public class Fechas
             f.setYear(2021);
             System.out.println(f);
             System.out.println(Integer.toBinaryString(f.getData()));
-            System.out.println("---------------");
         } catch (Exception e) {
             System.out.println(e);
+        } finally {
+            System.out.println("---------------");
         }
         
         try {
             var hoy = new Fecha(2023, 8, 31);
             System.out.println(hoy);
             System.out.println(Integer.toBinaryString(hoy.getData()));
-            System.out.println("---------------");
         } catch (Exception e) {
             System.out.println(e);
+        } finally {
+            System.out.println("---------------");
         }
         
         try {
             var hoy = new Fecha(2023, 2, 29);
             System.out.println(hoy);
             System.out.println(Integer.toBinaryString(hoy.getData()));
-            System.out.println("---------------");
         } catch (Exception e) {
             System.out.println(e);
+        } finally {
+            System.out.println("---------------");
+        }
+        
+        try {
+            short data = 0;
+            int iota = 0;
+            var hoy = java.time.LocalDate.now();
+            
+            data |= hoy.getDayOfMonth() << iota;
+            iota += 5;
+            
+            data |= hoy.getMonth().ordinal() << iota;
+            iota += 4;
+            
+            data |= (hoy.getYear() - 1950) << iota;
+            
+            var f = new Fecha(data);
+            System.out.println(f);
+            System.out.println(Integer.toBinaryString(f.getData()));
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            System.out.println("---------------");
         }
 
     }

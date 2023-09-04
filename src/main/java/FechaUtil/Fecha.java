@@ -25,6 +25,11 @@ public class Fecha
     {
         this(1950, 1, 1);
     }
+    
+    public Fecha(short data) throws Exception
+    {
+        setData(data);
+    }
 
     public Fecha(int year, int month, int day) throws Exception
     {
@@ -78,9 +83,7 @@ public class Fecha
 
     public int getMonth()
     {
-        int month = (data & 0x1E0) >> 5;
-        month &= 0xF;
-        return month;
+        return (data & 0x1E0) >> 5;
     }
 
     public int getDay()
@@ -119,6 +122,23 @@ public class Fecha
 
         checkMonthDay(getYear(), getMonth(), day);
         this.data = (short) ((this.data & 0xFFE0) | (day));
+    }
+    
+    public void setData(short data) throws Exception
+    {
+        int year = ((data & 0xFE00) >> 9) + 1950;
+        int month = (data & 0x1E0) >> 5;
+        int day = (data & 0x1F);
+        
+        if (!(day >= 1 && day <= 31))
+            throw new Exception("Day must be in between 1 and 31");
+
+        if (!(month >= 1 && month <= 12))
+            throw new Exception("Month must be in between 1 and 12");
+        
+        checkMonthDay(year, month, day);
+        
+        this.data = data;
     }
     
     @Override
